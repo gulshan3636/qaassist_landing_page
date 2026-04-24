@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
-import { createServerFn } from "@tanstack/react-start";
 
 type FormData = {
   name: string;
@@ -9,73 +8,6 @@ type FormData = {
   company: string;
   teamSize: string;
 };
-
-type SubmitLeadPayload = {
-  name: string;
-  email: string;
-  phone: string;
-  company: string;
-  teamSize: string;
-  pageSource: string;
-};
-
-const TEAM_SIZE_CUSTOM_FIELD_ID = "8jurtMJ3WzhKMfMftjcV";
-const PAGE_SOURCE_CUSTOM_FIELD_ID = "VJ9oawyN8N2I8D8vNRRb";
-
-const submitLeadToGhl = createServerFn({ method: "POST" })
-  .inputValidator((input: SubmitLeadPayload) => input)
-  .handler(async ({ data }) => {
-    const apiKey = process.env.LEADCONNECTOR_API_KEY;
-    const locationId = process.env.LEADCONNECTOR_LOCATION_ID;
-
-    if (!apiKey || !locationId) {
-      throw new Error("LeadConnector credentials are missing on the server.");
-    }
-
-    const trimmedName = data.name.trim();
-    const [firstName = "", ...restName] = trimmedName.split(/\s+/);
-    const lastName = restName.join(" ");
-    const teamSize = data.teamSize.trim();
-    const pageSource = data.pageSource.trim() || "unknown";
-
-    const customFields: Array<{ id: string; value: string }> = [
-      { id: PAGE_SOURCE_CUSTOM_FIELD_ID, value: pageSource },
-    ];
-
-    if (teamSize) {
-      customFields.push({ id: TEAM_SIZE_CUSTOM_FIELD_ID, value: teamSize });
-    }
-
-    const response = await fetch("https://services.leadconnectorhq.com/contacts/upsert", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        Version: "2021-07-28",
-      },
-      body: JSON.stringify({
-        locationId,
-        name: trimmedName,
-        firstName,
-        lastName,
-        email: data.email.trim(),
-        phone: data.phone.trim(),
-        companyName: data.company.trim(),
-        source: "QA Assist Landing Page",
-        tags: ["qa-assist"],
-        customFields,
-      }),
-    });
-
-    if (!response.ok) {
-      const details = (await response.text()).slice(0, 300);
-      throw new Error(
-        `LeadConnector request failed with ${response.status}${details ? `: ${details}` : ""}`,
-      );
-    }
-
-    return { ok: true };
-  });
 
 export function SignupForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -132,16 +64,24 @@ export function SignupForm() {
       setError(null);
       setIsSubmitting(true);
 
-      await submitLeadToGhl({
-        data: {
+      const response = await fetch("/api/submit-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           name: trimmedName,
           email: trimmedEmail,
           phone: trimmedPhone,
           company: formData.company,
           teamSize: formData.teamSize,
           pageSource: typeof window !== "undefined" ? window.location.href : "",
-        },
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error("Lead submission failed.");
+      }
 
       setSubmitted(true);
     } catch {
