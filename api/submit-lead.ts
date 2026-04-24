@@ -2,9 +2,9 @@ const TEAM_SIZE_CUSTOM_FIELD_ID = "8jurtMJ3WzhKMfMftjcV";
 const PAGE_SOURCE_CUSTOM_FIELD_ID = "VJ9oawyN8N2I8D8vNRRb";
 
 type LeadPayload = {
-  name: string;
-  email: string;
-  phone: string;
+  name?: string;
+  email?: string;
+  phone?: string;
   company?: string;
   teamSize?: string;
   pageSource?: string;
