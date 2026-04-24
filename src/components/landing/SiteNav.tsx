@@ -69,10 +69,10 @@ export function SiteNav() {
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
           <a
-            href="#signup"
+            href="#getearlyaccess"
             className="hidden sm:inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-[13px] font-medium text-primary-foreground bg-foreground hover:opacity-90 transition-opacity shadow-[var(--shadow-soft)]"
           >
-            Start free
+            Get early access
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
           <button
@@ -99,11 +99,11 @@ export function SiteNav() {
               </a>
             ))}
             <a
-              href="#signup"
+              href="#getearlyaccess"
               onClick={() => setOpen(false)}
               className="text-sm font-medium text-info-foreground"
             >
-              Start free →
+              Get early access →
             </a>
           </nav>
         </div>

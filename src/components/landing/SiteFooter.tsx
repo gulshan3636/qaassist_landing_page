@@ -12,8 +12,8 @@ const cols = [
     title: "Company",
     links: [
       { label: "About QA Assist", href: "#top" },
-      { label: "Pricing", href: "#signup" },
-      { label: "Start Free", href: "#signup" },
+      { label: "Pricing", href: "#getearlyaccess" },
+      { label: "Get Early Access", href: "#getearlyaccess" },
     ],
   },
   {
@@ -21,7 +21,7 @@ const cols = [
     links: [
       { label: "Email Us", href: "mailto:hello@qaassist.in" },
       { label: "Support", href: "mailto:support@qaassist.in" },
-      { label: "Demo", href: "#signup" },
+      { label: "Demo", href: "#getearlyaccess" },
     ],
   },
 ];

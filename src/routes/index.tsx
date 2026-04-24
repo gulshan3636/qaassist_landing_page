@@ -207,10 +207,10 @@ function Index() {
 
               <div className="mt-8 flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap items-stretch min-[420px]:items-center justify-center lg:justify-start gap-3">
                 <a
-                  href="#signup"
+                  href="#getearlyaccess"
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-[14px] font-medium text-primary-foreground bg-foreground hover:opacity-90 transition-opacity shadow-[var(--shadow-elevated)]"
                 >
-                  Start free - no card needed
+                  Get early access - no card needed
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
@@ -471,7 +471,7 @@ function Index() {
       </section>
 
       {/* ============== FINAL CTA / SIGNUP ============== */}
-      <section id="signup" className="py-16 sm:py-28 scroll-mt-20 relative">
+      <section id="getearlyaccess" className="py-16 sm:py-28 scroll-mt-20 relative">
         <div aria-hidden className="absolute inset-0 -z-10 hero-glow opacity-70" />
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
           <div className="reveal relative overflow-hidden rounded-2xl sm:rounded-3xl border hairline bg-elevated shadow-[var(--shadow-elevated)] p-5 min-[420px]:p-7 sm:p-14">
@@ -492,33 +492,56 @@ function Index() {
               }}
             />
 
-            <div className="relative max-w-[560px] mx-auto text-center">
-              <Eyebrow center>​</Eyebrow>
-              <h2 className="font-display text-[30px] sm:text-[44px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
-                Stop shipping bugs you{" "}
-                <span className="text-gradient italic">could have caught.</span>
-              </h2>
-              <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-muted-foreground">
-                Join engineering teams using QA Assist to run tighter sprints
-                and ship with more confidence.
-              </p>
-              <div className="mt-8 max-w-[440px] mx-auto">
-                <SignupForm />
+            <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              <div className="text-left">
+                <Eyebrow>Get Early Access</Eyebrow>
+                <h2 className="font-display text-[30px] sm:text-[44px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
+                  Stop shipping bugs you{" "}
+                  <span className="text-gradient italic">could have caught.</span>
+                </h2>
+                <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-muted-foreground max-w-[520px]">
+                  Join engineering teams using QA Assist to run tighter sprints
+                  and ship with more confidence.
+                </p>
+                <p className="mt-3 text-[14px] leading-[1.65] text-tertiary max-w-[520px]">
+                  Built for startup teams that need one place to manage test
+                  cases, track bugs, and share sprint-ready QA reports without
+                  adding process overhead.
+                </p>
+
+                <div className="mt-6 space-y-2.5 text-[13.5px] text-muted-foreground">
+                  <div className="inline-flex items-start gap-2">
+                    <CircleCheck className="h-4 w-4 text-info mt-0.5 shrink-0" />
+                    <span>Centralized test cases with faster sprint execution</span>
+                  </div>
+                  <div className="inline-flex items-start gap-2">
+                    <CircleCheck className="h-4 w-4 text-info mt-0.5 shrink-0" />
+                    <span>AI-assisted bug triage with severity and priority hints</span>
+                  </div>
+                  <div className="inline-flex items-start gap-2">
+                    <CircleCheck className="h-4 w-4 text-info mt-0.5 shrink-0" />
+                    <span>Shareable reports for daily standups and release sign-off</span>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-col gap-y-3 text-[13px] text-tertiary">
+                  <span className="inline-flex items-center gap-1.5">
+                    <CircleCheck className="h-3.5 w-3.5 text-success" />
+                    No credit card
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CircleCheck className="h-3.5 w-3.5 text-success" />
+                    Setup in an afternoon
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <MapPin className="h-3.5 w-3.5 text-info" />
+                    Hosted in India
+                  </span>
+                </div>
               </div>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-tertiary">
-                <span className="inline-flex items-center gap-1.5">
-                  <CircleCheck className="h-3.5 w-3.5 text-success" />
-                  No credit card
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <CircleCheck className="h-3.5 w-3.5 text-success" />
-                  Setup in an afternoon
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="h-3.5 w-3.5 text-info" />
-                  Hosted in India
-                </span>
+              <div className="rounded-xl border hairline bg-background/80 p-4 sm:p-6">
+                <SignupForm />
               </div>
             </div>
           </div>
