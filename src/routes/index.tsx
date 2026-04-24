@@ -179,14 +179,14 @@ function Index() {
       <SiteNav />
 
       {/* ============== HERO ============== */}
-      <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-24">
+      <section className="relative pt-24 sm:pt-36 pb-14 sm:pb-24">
         <div aria-hidden className="absolute inset-0 -z-10 bg-grid" />
         <div aria-hidden className="absolute inset-0 -z-10 hero-glow" />
 
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
-          <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-center">
-            <div className="reveal">
-              <div className="inline-flex items-center gap-2 rounded-full border hairline bg-elevated/70 backdrop-blur px-3 py-1 text-[12px] text-muted-foreground mb-6">
+          <div className="grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] gap-10 lg:gap-14 items-center">
+            <div className="reveal min-w-0 text-center lg:text-left">
+              <div className="mx-auto lg:mx-0 inline-flex max-w-full w-fit flex-wrap items-center gap-x-2 gap-y-1 rounded-full border hairline bg-elevated/70 backdrop-blur px-3 py-1 text-[12px] text-muted-foreground mb-6">
                 <span className="live-dot text-success-foreground font-medium">
                   Live 
                 </span>
@@ -194,35 +194,35 @@ function Index() {
                 <span>Built in India - Hosted in India </span>
               </div>
 
-              <h1 className="font-display text-[40px] sm:text-[52px] lg:text-[58px] leading-[1.02] tracking-[-0.02em] font-medium text-balance">
+              <h1 className="font-display text-[32px] min-[420px]:text-[36px] sm:text-[52px] lg:text-[58px] leading-[1.06] sm:leading-[1.02] tracking-[-0.02em] font-medium text-balance">
                 Your bugs ship faster than{" "}
                 <span className="text-gradient italic">your team can catch them.</span>
               </h1>
 
-              <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.6] text-muted-foreground max-w-[540px]">
+              <p className="mt-5 sm:mt-6 text-[15px] sm:text-[17px] leading-[1.65] sm:leading-[1.6] text-muted-foreground max-w-[540px] mx-auto lg:mx-0">
                 QA Assist gives startup engineering teams one place to write test
                 cases, run sprints, log bugs, and ship reports. Built lean,
                 priced for teams that move fast.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="mt-8 flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap items-stretch min-[420px]:items-center justify-center lg:justify-start gap-3">
                 <a
                   href="#signup"
-                  className="inline-flex h-11 items-center gap-2 rounded-full px-6 text-[14px] font-medium text-primary-foreground bg-foreground hover:opacity-90 transition-opacity shadow-[var(--shadow-elevated)]"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-[14px] font-medium text-primary-foreground bg-foreground hover:opacity-90 transition-opacity shadow-[var(--shadow-elevated)]"
                 >
                   Start free - no card needed
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href="#workflow"
-                  className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-[14px] font-medium text-foreground border hairline bg-elevated/60 backdrop-blur hover:bg-secondary transition-colors"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[14px] font-medium text-foreground border hairline bg-elevated/60 backdrop-blur hover:bg-secondary transition-colors"
                 >
                   <PlayCircle className="h-4 w-4" />
                   See a 2-min demo
                 </a>
               </div>
 
-              <div className="mt-6 flex items-center gap-4 text-[12px] text-tertiary">
+              <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-2 text-[12px] text-tertiary">
                 <div className="flex -space-x-1.5">
                   {["A", "P", "K", "M"].map((i, idx) => (
                     <span
@@ -239,7 +239,7 @@ function Index() {
               </div>
             </div>
 
-            <div className="reveal">
+            <div className="reveal min-w-0 mx-auto w-full max-w-[640px] lg:max-w-none">
               <ProductMockup />
             </div>
           </div>
@@ -257,12 +257,12 @@ function Index() {
       </section>
 
       {/* ============== PROBLEM / STATS ============== */}
-      <section className="py-20 sm:py-28">
+      <section className="py-16 sm:py-28">
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-center">
-            <div className="reveal">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
+            <div className="reveal min-w-0">
               <Eyebrow>{"\n"}</Eyebrow>
-              <h2 className="font-display text-[34px] sm:text-[42px] leading-[1.05] tracking-[-0.02em] font-medium text-balance">
+              <h2 className="font-display text-[30px] sm:text-[42px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
                 Built for teams of 3 to 30 who can't afford{" "}
                 <span className="text-gradient italic">QA chaos.</span>
               </h2>
@@ -273,7 +273,7 @@ function Index() {
               </p>
             </div>
 
-            <div className="reveal grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="reveal grid grid-cols-1 min-[560px]:grid-cols-3 gap-3">
               <StatCard num="4" unit="roles" label="Admin · Manager · QA · Dev" tone="info" />
               <StatCard num="1" unit="platform" label="Tests · Bugs · Sprints · Reports" tone="violet" />
               <StatCard num="0" unit="manual tags" label="AI classifies bugs automatically" tone="success" />
@@ -283,11 +283,11 @@ function Index() {
       </section>
 
       {/* ============== FEATURES ============== */}
-      <section id="features" className="py-20 sm:py-28 scroll-mt-20 border-t hairline bg-secondary/20">
+      <section id="features" className="py-16 sm:py-28 scroll-mt-20 border-t hairline bg-secondary/20">
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
           <div className="max-w-[680px] mb-12 reveal">
             <Eyebrow>{"\n"}</Eyebrow>
-            <h2 className="font-display text-[34px] sm:text-[44px] leading-[1.05] tracking-[-0.02em] font-medium text-balance">
+            <h2 className="font-display text-[30px] sm:text-[44px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
               Everything a lean QA team{" "}
               <span className="text-gradient italic">actually uses.</span>
             </h2>
@@ -297,7 +297,7 @@ function Index() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+          <div className="grid min-[560px]:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
             {features.map((f) => (
               <div
                 key={f.title}
@@ -324,11 +324,11 @@ function Index() {
       </section>
 
       {/* ============== WORKFLOW ============== */}
-      <section id="workflow" className="py-20 sm:py-28 scroll-mt-20 border-t hairline">
+      <section id="workflow" className="py-16 sm:py-28 scroll-mt-20 border-t hairline">
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
           <div className="max-w-[680px] mb-14 reveal">
             <Eyebrow>​</Eyebrow>
-            <h2 className="font-display text-[34px] sm:text-[44px] leading-[1.05] tracking-[-0.02em] font-medium text-balance">
+            <h2 className="font-display text-[30px] sm:text-[44px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
               Four steps from test plan to{" "}
               <span className="text-gradient italic">shipped sprint.</span>
             </h2>
@@ -347,7 +347,7 @@ function Index() {
                   "linear-gradient(to right, transparent, var(--hairline) 10%, var(--hairline) 90%, transparent)",
               }}
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 min-[560px]:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
               {steps.map((s) => (
                 <div key={s.num} className="relative">
                   <div className="flex items-center gap-3 mb-4">
@@ -377,11 +377,11 @@ function Index() {
       </section>
 
       {/* ============== ROLES ============== */}
-      <section id="roles" className="py-20 sm:py-28 scroll-mt-20 border-t hairline bg-secondary/20">
+      <section id="roles" className="py-16 sm:py-28 scroll-mt-20 border-t hairline bg-secondary/20">
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
           <div className="max-w-[680px] mb-12 reveal">
             <Eyebrow>​</Eyebrow>
-            <h2 className="font-display text-[34px] sm:text-[44px] leading-[1.05] tracking-[-0.02em] font-medium text-balance">
+            <h2 className="font-display text-[30px] sm:text-[44px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
               Right access for{" "}
               <span className="text-gradient italic">every person on the team.</span>
             </h2>
@@ -390,7 +390,7 @@ function Index() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+          <div className="grid min-[560px]:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
             {roles.map((r) => (
               <div
                 key={r.name}
@@ -428,12 +428,12 @@ function Index() {
       </section>
 
       {/* ============== FAQ ============== */}
-      <section id="faq" className="py-20 sm:py-28 scroll-mt-20 border-t hairline">
+      <section id="faq" className="py-16 sm:py-28 scroll-mt-20 border-t hairline">
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
-          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16">
-            <div className="reveal">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-10 lg:gap-16">
+            <div className="reveal min-w-0">
               <Eyebrow>​</Eyebrow>
-              <h2 className="font-display text-[34px] sm:text-[42px] leading-[1.05] tracking-[-0.02em] font-medium text-balance">
+              <h2 className="font-display text-[30px] sm:text-[42px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
                 Answers to the questions{" "}
                 <span className="text-gradient italic">your team will ask.</span>
               </h2>
@@ -451,7 +451,7 @@ function Index() {
 
             <div className="reveal divide-y divide-[var(--hairline)] border-y hairline">
               {objections.map((o) => (
-                <div key={o.q} className="py-5 flex gap-4 items-start">
+                <div key={o.q} className="py-5 flex gap-3 sm:gap-4 items-start">
                   <div className="h-9 w-9 rounded-lg bg-info-muted text-info-foreground flex items-center justify-center shrink-0">
                     <o.icon className="h-4 w-4" />
                   </div>
@@ -471,10 +471,10 @@ function Index() {
       </section>
 
       {/* ============== FINAL CTA / SIGNUP ============== */}
-      <section id="signup" className="py-20 sm:py-28 scroll-mt-20 relative">
+      <section id="signup" className="py-16 sm:py-28 scroll-mt-20 relative">
         <div aria-hidden className="absolute inset-0 -z-10 hero-glow opacity-70" />
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
-          <div className="reveal relative overflow-hidden rounded-3xl border hairline bg-elevated shadow-[var(--shadow-elevated)] p-8 sm:p-14">
+          <div className="reveal relative overflow-hidden rounded-2xl sm:rounded-3xl border hairline bg-elevated shadow-[var(--shadow-elevated)] p-5 min-[420px]:p-7 sm:p-14">
             <div
               aria-hidden
               className="absolute -top-32 -right-32 h-80 w-80 rounded-full opacity-40 blur-3xl"
@@ -494,7 +494,7 @@ function Index() {
 
             <div className="relative max-w-[560px] mx-auto text-center">
               <Eyebrow center>​</Eyebrow>
-              <h2 className="font-display text-[34px] sm:text-[44px] leading-[1.05] tracking-[-0.02em] font-medium text-balance">
+              <h2 className="font-display text-[30px] sm:text-[44px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
                 Stop shipping bugs you{" "}
                 <span className="text-gradient italic">could have caught.</span>
               </h2>

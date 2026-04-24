@@ -37,11 +37,11 @@ export function LogoMarquee() {
           background: "linear-gradient(to left, var(--background), transparent)",
         }}
       />
-      <div className="flex w-max animate-marquee gap-12 py-2">
+      <div className="flex w-max animate-marquee gap-8 sm:gap-12 py-2">
         {logos.map((name, i) => (
           <span
             key={`${name}-${i}`}
-            className="font-display text-[18px] font-medium text-tertiary/80 whitespace-nowrap tracking-tight"
+            className="font-display text-[15px] sm:text-[18px] font-medium text-tertiary/80 whitespace-nowrap tracking-tight"
           >
             {name}
           </span>

@@ -3,14 +3,11 @@ import { useEffect, useState, useCallback } from "react";
 type Theme = "light" | "dark";
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     const stored = (typeof window !== "undefined" && localStorage.getItem("theme")) as Theme | null;
-    const prefersDark =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initial: Theme = stored ?? (prefersDark ? "dark" : "light");
+    const initial: Theme = stored ?? "dark";
     setTheme(initial);
     document.documentElement.classList.toggle("dark", initial === "dark");
   }, []);

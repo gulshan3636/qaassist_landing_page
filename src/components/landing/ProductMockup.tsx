@@ -6,7 +6,7 @@ import { CheckCircle2, Circle, AlertCircle, Sparkles } from "lucide-react";
  */
 export function ProductMockup() {
   return (
-    <div className="relative">
+    <div className="relative min-w-0">
       {/* Decorative glow behind */}
       <div
         aria-hidden
@@ -26,14 +26,14 @@ export function ProductMockup() {
             <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
           </div>
           <div className="flex-1 flex justify-center">
-            <span className="font-mono text-[10.5px] text-tertiary">
+            <span className="hidden min-[460px]:inline font-mono text-[10.5px] text-tertiary">
               app.qaassist.io / sprints / sprint-24
             </span>
           </div>
         </div>
 
         {/* Body */}
-        <div className="grid grid-cols-[140px_1fr] min-h-[320px]">
+        <div className="grid grid-cols-1 sm:grid-cols-[140px_minmax(0,1fr)] min-h-[320px]">
           {/* Sidebar */}
           <aside className="border-r hairline bg-secondary/30 p-3 hidden sm:block">
             <div className="text-[10px] font-medium uppercase tracking-[0.12em] text-tertiary mb-2 px-1">
@@ -58,17 +58,17 @@ export function ProductMockup() {
           </aside>
 
           {/* Main */}
-          <div className="p-4 sm:p-5">
-            <div className="flex items-center justify-between mb-3">
-              <div>
+          <div className="min-w-0 p-4 sm:p-5">
+            <div className="flex items-start justify-between mb-3 gap-2">
+              <div className="min-w-0">
                 <div className="text-[10px] font-medium uppercase tracking-[0.12em] text-tertiary">
                   Sprint 24 · Checkout flow
                 </div>
-                <div className="text-[14px] font-medium text-foreground mt-0.5">
+                <div className="text-[13px] sm:text-[14px] font-medium text-foreground mt-0.5 text-balance">
                   Pre-release regression
                 </div>
               </div>
-              <span className="text-[10.5px] font-medium px-2 py-0.5 rounded-full bg-info-muted text-info-foreground border hairline border-info/20">
+              <span className="shrink-0 text-[10.5px] font-medium px-2 py-0.5 rounded-full bg-info-muted text-info-foreground border hairline border-info/20">
                 Running
               </span>
             </div>
@@ -86,7 +86,7 @@ export function ProductMockup() {
                 <div className="h-full bg-danger" style={{ width: "10%" }} />
                 <div className="h-full bg-warn" style={{ width: "6%" }} />
               </div>
-              <div className="flex gap-3 mt-2 text-[10.5px] text-tertiary">
+              <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 text-[10.5px] text-tertiary">
                 <Legend color="success" label="38 pass" />
                 <Legend color="danger" label="5 fail" />
                 <Legend color="warn" label="3 blocked" />
@@ -197,16 +197,18 @@ function TestRow({
       <Circle className="h-3.5 w-3.5 text-warn" />
     );
   return (
-    <div className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md hover:bg-secondary/60 transition-colors">
+    <div className="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-secondary/60 transition-colors">
       {icon}
-      <span className="font-mono text-[10.5px] text-tertiary w-12 shrink-0">{id}</span>
-      <span className="text-[12px] text-foreground truncate flex-1">{title}</span>
+      <span className="font-mono text-[10px] sm:text-[10.5px] text-tertiary w-11 sm:w-12 shrink-0">{id}</span>
+      <span className="text-[11.5px] sm:text-[12px] text-foreground truncate flex-1 min-w-0">{title}</span>
       {badge && (
-        <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-violet-muted text-violet-foreground">
+        <span className="hidden min-[460px]:inline text-[10px] font-medium px-1.5 py-0.5 rounded bg-violet-muted text-violet-foreground shrink-0">
           {badge}
         </span>
       )}
-      <Avatar initial={owner} tone={status === "pass" ? "success" : status === "fail" ? "info" : "violet"} />
+      <div className="shrink-0">
+        <Avatar initial={owner} tone={status === "pass" ? "success" : status === "fail" ? "info" : "violet"} />
+      </div>
     </div>
   );
 }
