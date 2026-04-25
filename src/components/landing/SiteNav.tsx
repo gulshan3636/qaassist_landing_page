@@ -36,7 +36,7 @@ export function SiteNav() {
           <img
             src="/logo-icon.png"
             alt="QA Assist logo"
-            className="h-8 w-8 object-contain"
+            className="h-12 w-12 object-contain"
           />
           <span className="font-display text-[17px] tracking-tight font-medium">
             QA Assist

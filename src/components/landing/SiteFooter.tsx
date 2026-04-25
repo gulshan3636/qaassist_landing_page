@@ -36,12 +36,12 @@ export function SiteFooter() {
             <img
               src="/logo-light.png"
               alt="QA Assist"
-              className="h-10 object-contain dark:hidden"
+              className="h-20 object-contain dark:hidden"
             />
             <img
               src="/logo-dark.png"
               alt="QA Assist"
-              className="h-10 object-contain hidden dark:block"
+              className="h-20 object-contain hidden dark:block"
             />
           </div>
             <p className="text-[13px] text-muted-foreground leading-relaxed max-w-[280px] mb-4">
