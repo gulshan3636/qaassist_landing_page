@@ -91,29 +91,37 @@ const steps = [
     icon: Pencil,
     num: "01",
     label: "Create",
+    tone: "info" as const,
     title: "Write or generate test cases",
     desc: "Type manually or let AI generate descriptions from your requirements in seconds.",
+    highlights: ["AI-assisted generation", "Import from Excel", "Custom fields"],
   },
   {
     icon: UsersRound,
     num: "02",
     label: "Assign",
+    tone: "violet" as const,
     title: "Set priority and ownership",
     desc: "Assign testers, set environment, group cases into a sprint run.",
+    highlights: ["Role-based access", "Sprint grouping", "Environment tags"],
   },
   {
     icon: CircleCheck,
     num: "03",
     label: "Execute",
+    tone: "success" as const,
     title: "Run and mark results",
     desc: "Testers mark each case Pass, Fail, or Blocked directly in the app.",
+    highlights: ["Live pass/fail", "Evidence upload", "Block tracking"],
   },
   {
     icon: Send,
     num: "04",
     label: "Ship",
+    tone: "warn" as const,
     title: "Report and close",
     desc: "Bugs auto-created on failure. Full audit trail. Report exported as PDF or CSV.",
+    highlights: ["Auto bug creation", "Audit trail", "PDF / CSV export"],
   },
 ];
 
@@ -323,11 +331,13 @@ function Index() {
         </div>
       </section>
 
-      {/* ============== WORKFLOW ============== */}
-      <section id="workflow" className="py-16 sm:py-28 scroll-mt-20 border-t hairline">
+      {/* ============== WORKFLOW — S-CURVE ROADMAP ============== */}
+      <section id="workflow" className="py-16 sm:py-28 scroll-mt-20 border-t hairline overflow-hidden">
         <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
-          <div className="max-w-[680px] mb-14 reveal">
-            <Eyebrow>​</Eyebrow>
+
+          {/* Header — centered */}
+          <div className="max-w-[600px] mx-auto text-center mb-20 reveal">
+            <Eyebrow>Workflow</Eyebrow>
             <h2 className="font-display text-[30px] sm:text-[44px] leading-[1.07] sm:leading-[1.05] tracking-[-0.02em] font-medium text-balance">
               Four steps from test plan to{" "}
               <span className="text-gradient italic">shipped sprint.</span>
@@ -337,47 +347,140 @@ function Index() {
             </p>
           </div>
 
-          <div className="relative reveal">
-            {/* Animated connecting line on desktop */}
-            <div
+          {/* ── DESKTOP S-CURVE ── */}
+          <div className="hidden lg:block relative" style={{ minHeight: 600 }}>
+
+            {/* SVG S-path overlay */}
+            <svg
               aria-hidden
-              className="hidden lg:block absolute top-7 left-[6%] right-[6%] h-px overflow-hidden rounded-full"
-              style={{ background: "var(--hairline)" }}
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              viewBox="0 0 1000 600"
+              preserveAspectRatio="none"
             >
-              <div
-                className="h-full w-1/2 rounded-full"
-                style={{
-                  background: "linear-gradient(to right, transparent, var(--info), var(--violet), transparent)",
-                  animation: "slideRight 3s ease-in-out infinite",
-                }}
+              <defs>
+                <linearGradient id="sGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%"   stopColor="var(--info)"    stopOpacity="0.8" />
+                  <stop offset="50%"  stopColor="var(--violet)"  stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="var(--success)" stopOpacity="0.8" />
+                </linearGradient>
+                <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="5" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              {/* Ghost track */}
+              <path
+                d="M 220,80 C 220,280 780,150 780,300 C 780,450 220,370 220,520"
+                fill="none" stroke="var(--hairline)" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 6"
               />
-            </div>
-            <div className="grid grid-cols-1 min-[560px]:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
-              {steps.map((s) => (
-                <div key={s.num} className="relative">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="relative z-10 h-14 w-14 rounded-full border hairline bg-elevated flex items-center justify-center shadow-[var(--shadow-soft)]">
-                      <s.icon className="h-5 w-5 text-info" />
-                    </div>
-                    <div>
-                      <div className="font-mono text-[10.5px] text-tertiary tracking-wider">
-                        STEP {s.num}
+              {/* Animated glowing path drawn via stroke-dashoffset */}
+              <path
+                className="s-path-draw"
+                d="M 220,80 C 220,280 780,150 780,300 C 780,450 220,370 220,520"
+                fill="none" stroke="url(#sGrad)" strokeWidth="3" strokeLinecap="round"
+              />
+
+              {/* Travelling dot */}
+              <circle r="6" fill="var(--info)" filter="url(#dotGlow)" opacity="0.95">
+                <animateMotion
+                  dur="5s" repeatCount="indefinite" rotate="auto"
+                  path="M 220,80 C 220,280 780,150 780,300 C 780,450 220,370 220,520"
+                />
+              </circle>
+              <circle r="3" fill="white" opacity="0.9">
+                <animateMotion
+                  dur="5s" repeatCount="indefinite" rotate="auto"
+                  path="M 220,80 C 220,280 780,150 780,300 C 780,450 220,370 220,520"
+                />
+              </circle>
+            </svg>
+
+            {/* Step cards — absolutely positioned at path nodes */}
+            {[
+              { pos: "top-[40px]   left-[0%]",  align: "items-start" },
+              { pos: "top-[200px]  right-[0%]", align: "items-end"   },
+              { pos: "top-[360px]  left-[0%]",  align: "items-start" },
+              { pos: "top-[440px]  right-[0%]", align: "items-end"   },
+            ].map(({ pos, align }, i) => {
+              const s = steps[i];
+              const tones = {
+                info:    { bg: "bg-info-muted",    text: "text-info-foreground",    icon: "text-info",    bar: "from-info to-violet"   },
+                violet:  { bg: "bg-violet-muted",  text: "text-violet-foreground",  icon: "text-violet",  bar: "from-violet to-info"   },
+                success: { bg: "bg-success-muted", text: "text-success-foreground", icon: "text-success", bar: "from-success to-info"  },
+                warn:    { bg: "bg-warn-muted",     text: "text-warn-foreground",    icon: "text-warn",    bar: "from-warn to-violet"   },
+              } as const;
+              const t = tones[s.tone];
+              return (
+                <div key={s.num} className={`absolute ${pos} w-[44%] reveal`}>
+                  <div className={`card-hover rounded-2xl border hairline bg-elevated shadow-[var(--shadow-soft)] p-6 relative overflow-hidden`}>
+                    <div className={`absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-gradient-to-r ${t.bar}`} />
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`h-11 w-11 rounded-xl flex items-center justify-center ${t.bg}`}>
+                        <s.icon className={`h-5 w-5 ${t.icon}`} />
                       </div>
-                      <div className="text-[12px] font-medium text-info-foreground uppercase tracking-wider">
-                        {s.label}
+                      <div>
+                        <div className="font-mono text-[9.5px] text-tertiary tracking-widest uppercase">Step {s.num}</div>
+                        <div className={`text-[12px] font-bold uppercase tracking-wider ${t.text}`}>{s.label}</div>
+                      </div>
+                      <span className={`ml-auto text-[48px] font-display font-medium leading-none ${t.text} opacity-[0.08] select-none`}>{s.num}</span>
+                    </div>
+                    <h3 className="font-display text-[19px] font-medium text-foreground leading-[1.25] mb-1.5">{s.title}</h3>
+                    <p className="text-[13px] leading-[1.65] text-muted-foreground mb-4">{s.desc}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {s.highlights.map((h) => (
+                        <span key={h} className="inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-full border hairline bg-background">
+                          <CircleCheck className={`h-2.5 w-2.5 shrink-0 ${t.icon}`} />
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ── MOBILE single-column ── */}
+          <div className="lg:hidden relative">
+            <div aria-hidden className="absolute left-5 top-0 bottom-0 w-px overflow-hidden" style={{ background: "var(--hairline)" }}>
+              <div className="w-full" style={{ background: "linear-gradient(to bottom,transparent,var(--info) 40%,var(--violet) 80%,transparent)", animation: "slideDown 3s ease-in-out infinite", height: "50%" }} />
+            </div>
+            <div className="flex flex-col gap-8">
+              {steps.map((s, i) => {
+                const tones = {
+                  info:    { bg: "bg-info-muted",    text: "text-info-foreground",    icon: "text-info",    bar: "from-info to-violet"  },
+                  violet:  { bg: "bg-violet-muted",  text: "text-violet-foreground",  icon: "text-violet",  bar: "from-violet to-info"  },
+                  success: { bg: "bg-success-muted", text: "text-success-foreground", icon: "text-success", bar: "from-success to-info" },
+                  warn:    { bg: "bg-warn-muted",     text: "text-warn-foreground",    icon: "text-warn",    bar: "from-warn to-violet"  },
+                } as const;
+                const t = tones[s.tone];
+                return (
+                  <div key={s.num} className="reveal flex gap-5 items-start">
+                    <div className={`relative z-10 h-10 w-10 shrink-0 rounded-full flex items-center justify-center ${t.bg}`}>
+                      <s.icon className={`h-4 w-4 ${t.icon}`} />
+                      <span className={`absolute -top-1 -right-1 h-4 w-4 rounded-full flex items-center justify-center text-[8px] font-bold ${t.bg} ${t.text} border border-background`}>{s.num}</span>
+                    </div>
+                    <div className="flex-1 rounded-xl border hairline bg-elevated p-4 shadow-[var(--shadow-soft)] relative overflow-hidden">
+                      <div className={`absolute top-0 left-0 right-0 h-[3px] rounded-t-xl bg-gradient-to-r ${t.bar}`} />
+                      <div className={`text-[9.5px] font-bold uppercase tracking-widest mb-2 ${t.text}`}>Step {s.num} — {s.label}</div>
+                      <h3 className="text-[15px] font-medium text-foreground mb-1">{s.title}</h3>
+                      <p className="text-[12.5px] leading-[1.6] text-muted-foreground mb-3">{s.desc}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {s.highlights.map((h) => (
+                          <span key={h} className="inline-flex items-center gap-1 text-[10.5px] font-medium px-2 py-0.5 rounded-full border hairline bg-background">
+                            <CircleCheck className={`h-2.5 w-2.5 shrink-0 ${t.icon}`} />
+                            {h}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
-                  <h3 className="text-[15px] font-medium text-foreground mb-1.5">
-                    {s.title}
-                  </h3>
-                  <p className="text-[13.5px] leading-[1.6] text-muted-foreground">
-                    {s.desc}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
+
         </div>
       </section>
 
