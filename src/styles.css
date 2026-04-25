@@ -278,8 +278,8 @@
 
   /* S-curve path draw-on animation */
   .s-path-draw {
-    stroke-dasharray: 1200;
-    stroke-dashoffset: 1200;
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
     animation: drawPath 3s ease forwards, shimmerPath 4s 3s ease-in-out infinite;
   }
   @keyframes drawPath {

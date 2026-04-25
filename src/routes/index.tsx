@@ -348,13 +348,13 @@ function Index() {
           </div>
 
           {/* ── DESKTOP S-CURVE ── */}
-          <div className="hidden lg:block relative" style={{ minHeight: 600 }}>
+          <div className="hidden lg:block relative" style={{ minHeight: 800 }}>
 
             {/* SVG S-path overlay */}
             <svg
               aria-hidden
               className="absolute inset-0 w-full h-full pointer-events-none"
-              viewBox="0 0 1000 600"
+              viewBox="0 0 1000 800"
               preserveAspectRatio="none"
             >
               <defs>
@@ -371,37 +371,39 @@ function Index() {
 
               {/* Ghost track */}
               <path
-                d="M 220,80 C 220,280 780,150 780,300 C 780,450 220,370 220,520"
-                fill="none" stroke="var(--hairline)" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 6"
+                d="M 220,80 C 220,220 780,120 780,260 C 780,400 220,300 220,440 C 220,580 780,480 780,620"
+                fill="none" stroke="var(--hairline)" strokeWidth="3" strokeLinecap="round" strokeDasharray="8 8"
+                vectorEffect="non-scaling-stroke"
               />
               {/* Animated glowing path drawn via stroke-dashoffset */}
               <path
                 className="s-path-draw"
-                d="M 220,80 C 220,280 780,150 780,300 C 780,450 220,370 220,520"
-                fill="none" stroke="url(#sGrad)" strokeWidth="3" strokeLinecap="round"
+                d="M 220,80 C 220,220 780,120 780,260 C 780,400 220,300 220,440 C 220,580 780,480 780,620"
+                fill="none" stroke="url(#sGrad)" strokeWidth="5" strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
               />
 
               {/* Travelling dot */}
               <circle r="6" fill="var(--info)" filter="url(#dotGlow)" opacity="0.95">
                 <animateMotion
                   dur="5s" repeatCount="indefinite" rotate="auto"
-                  path="M 220,80 C 220,280 780,150 780,300 C 780,450 220,370 220,520"
+                  path="M 220,80 C 220,220 780,120 780,260 C 780,400 220,300 220,440 C 220,580 780,480 780,620"
                 />
               </circle>
               <circle r="3" fill="white" opacity="0.9">
                 <animateMotion
                   dur="5s" repeatCount="indefinite" rotate="auto"
-                  path="M 220,80 C 220,280 780,150 780,300 C 780,450 220,370 220,520"
+                  path="M 220,80 C 220,220 780,120 780,260 C 780,400 220,300 220,440 C 220,580 780,480 780,620"
                 />
               </circle>
             </svg>
 
             {/* Step cards — absolutely positioned at path nodes */}
             {[
-              { pos: "top-[40px]   left-[0%]",  align: "items-start" },
-              { pos: "top-[200px]  right-[0%]", align: "items-end"   },
+              { pos: "top-[0px]    left-[0%]",  align: "items-start" },
+              { pos: "top-[180px]  right-[0%]", align: "items-end"   },
               { pos: "top-[360px]  left-[0%]",  align: "items-start" },
-              { pos: "top-[440px]  right-[0%]", align: "items-end"   },
+              { pos: "top-[540px]  right-[0%]", align: "items-end"   },
             ].map(({ pos, align }, i) => {
               const s = steps[i];
               const tones = {
