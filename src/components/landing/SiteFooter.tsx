@@ -32,19 +32,18 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1140px] px-5 sm:px-8 py-10 sm:py-12 lg:py-14">
         <div className="grid grid-cols-1 gap-9 sm:gap-10 lg:grid-cols-5 lg:gap-8">
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-3">
-              <span
-                className="inline-flex h-6 w-6 rounded-md items-center justify-center text-[11px] font-bold text-primary-foreground"
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--info) 0%, var(--violet) 100%)",
-                }}
-                aria-hidden
-              >
-                Q
-              </span>
-              <span className="font-display text-[16px] font-medium">QA Assist</span>
-            </div>
+          <div className="mb-3">
+            <img
+              src="/logo-light.png"
+              alt="QA Assist"
+              className="h-10 object-contain dark:hidden"
+            />
+            <img
+              src="/logo-dark.png"
+              alt="QA Assist"
+              className="h-10 object-contain hidden dark:block"
+            />
+          </div>
             <p className="text-[13px] text-muted-foreground leading-relaxed max-w-[280px] mb-4">
               Lean QA for startup engineering teams. Tests, bugs, sprints, and
               reports - in one place. Hosted in India.

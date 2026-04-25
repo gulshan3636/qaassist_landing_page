@@ -33,16 +33,11 @@ export function SiteNav() {
     >
       <div className="mx-auto max-w-[1140px] px-5 sm:px-8 h-16 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2 group">
-          <span
-            className="inline-flex h-6 w-6 rounded-md items-center justify-center text-[11px] font-bold text-primary-foreground"
-            style={{
-              background:
-                "linear-gradient(135deg, var(--info) 0%, var(--violet) 100%)",
-            }}
-            aria-hidden
-          >
-            Q
-          </span>
+          <img
+            src="/logo-icon.png"
+            alt="QA Assist logo"
+            className="h-8 w-8 object-contain"
+          />
           <span className="font-display text-[17px] tracking-tight font-medium">
             QA Assist
           </span>
