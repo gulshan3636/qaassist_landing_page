@@ -69,6 +69,12 @@ export function SiteNav() {
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
           <a
+            href="https://app.qaassist.in"
+            className="hidden sm:inline-flex h-9 items-center rounded-full px-4 text-[13px] font-medium text-foreground border hairline bg-elevated/60 backdrop-blur hover:bg-secondary transition-colors"
+          >
+            Login
+          </a>
+          <a
             href="#getearlyaccess"
             className="hidden sm:inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-[13px] font-medium text-primary-foreground bg-foreground hover:opacity-90 transition-opacity shadow-[var(--shadow-soft)]"
           >
@@ -104,6 +110,13 @@ export function SiteNav() {
               className="text-sm font-medium text-info-foreground"
             >
               Get early access →
+            </a>
+            <a
+              href="https://app.qaassist.in"
+              onClick={() => setOpen(false)}
+              className="text-sm font-medium text-foreground"
+            >
+              Login
             </a>
           </nav>
         </div>

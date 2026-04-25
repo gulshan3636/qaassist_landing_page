@@ -222,7 +222,7 @@ function Index() {
                 </a>
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-2 text-[12px] text-tertiary">
+              {/* <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-2 text-[12px] text-tertiary">
                 <div className="flex -space-x-1.5">
                   {["A", "P", "K", "M"].map((i, idx) => (
                     <span
@@ -236,7 +236,7 @@ function Index() {
                   ))}
                 </div>
                 <span>Trusted by 200+ engineering teams</span>
-              </div>
+              </div> */}
             </div>
 
             <div className="reveal min-w-0 mx-auto w-full max-w-[640px] lg:max-w-none">
@@ -338,15 +338,20 @@ function Index() {
           </div>
 
           <div className="relative reveal">
-            {/* Connecting line on desktop */}
+            {/* Animated connecting line on desktop */}
             <div
               aria-hidden
-              className="hidden lg:block absolute top-7 left-[6%] right-[6%] h-px"
-              style={{
-                background:
-                  "linear-gradient(to right, transparent, var(--hairline) 10%, var(--hairline) 90%, transparent)",
-              }}
-            />
+              className="hidden lg:block absolute top-7 left-[6%] right-[6%] h-px overflow-hidden rounded-full"
+              style={{ background: "var(--hairline)" }}
+            >
+              <div
+                className="h-full w-1/2 rounded-full"
+                style={{
+                  background: "linear-gradient(to right, transparent, var(--info), var(--violet), transparent)",
+                  animation: "slideRight 3s ease-in-out infinite",
+                }}
+              />
+            </div>
             <div className="grid grid-cols-1 min-[560px]:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
               {steps.map((s) => (
                 <div key={s.num} className="relative">
@@ -562,13 +567,11 @@ function Eyebrow({
 }) {
   return (
     <div
-      className={`text-[11px] font-medium uppercase tracking-[0.16em] text-tertiary mb-4 flex items-center gap-2 ${
-        center ? "justify-center" : ""
+      className={`text-[11px] font-medium uppercase tracking-[0.16em] text-tertiary mb-4 ${
+        center ? "flex justify-center" : "block"
       }`}
     >
-      <span className="h-px w-6 bg-hairline" aria-hidden />
       <span>{children}</span>
-      <span className="h-px w-6 bg-hairline" aria-hidden />
     </div>
   );
 }

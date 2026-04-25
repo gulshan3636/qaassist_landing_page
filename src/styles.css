@@ -237,7 +237,15 @@
     to   { transform: translateX(-50%); }
   }
   .animate-marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee 42s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+      transform: none;
+    }
   }
 
   /* Pulse dot for "live" badge */
@@ -254,5 +262,11 @@
     background: var(--success);
     margin-right: 6px;
     animation: live-pulse 2s ease-in-out infinite;
+  }
+
+  /* Animated step connector shimmer */
+  @keyframes slideRight {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
   }
 }
