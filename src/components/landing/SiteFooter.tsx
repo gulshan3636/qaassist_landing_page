@@ -2,18 +2,19 @@ const cols = [
   {
     title: "Product",
     links: [
-      { label: "Features", href: "#features" },
-      { label: "Workflow", href: "#workflow" },
-      { label: "Roles", href: "#roles" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Features", href: "/#features" },
+      { label: "Workflow", href: "/#workflow" },
+      { label: "Roles", href: "/#roles" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "Blog", href: "/blog" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About QA Assist", href: "#top" },
-      { label: "Pricing", href: "#getearlyaccess" },
-      { label: "Get Early Access", href: "#getearlyaccess" },
+      { label: "About QA Assist", href: "/#top" },
+      { label: "Pricing", href: "/#getearlyaccess" },
+      { label: "Get Early Access", href: "/#getearlyaccess" },
     ],
   },
   {
@@ -21,10 +22,11 @@ const cols = [
     links: [
       { label: "Email Us", href: "mailto:hello@qaassist.in" },
       { label: "Support", href: "mailto:support@qaassist.in" },
-      { label: "Demo", href: "#getearlyaccess" },
+      { label: "Demo", href: "/#getearlyaccess" },
     ],
   },
 ];
+
 
 export function SiteFooter() {
   return (

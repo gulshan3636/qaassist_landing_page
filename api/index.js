@@ -1,11 +1,43 @@
 import handler from '../dist/server/server.js';
 
+const PROXY_ROUTES = {
+  '/sitemap.xml': { path: '/api/v1/sitemap.xml', contentType: 'application/xml; charset=utf-8' },
+  '/robots.txt': { path: '/api/v1/robots.txt', contentType: 'text/plain; charset=utf-8' },
+  '/rss.xml': { path: '/api/v1/rss.xml', contentType: 'application/rss+xml; charset=utf-8' },
+  '/llms.txt': { path: '/api/v1/llms.txt', contentType: 'text/markdown; charset=utf-8' },
+  '/llms-full.txt': { path: '/api/v1/llms-full.txt', contentType: 'text/markdown; charset=utf-8' },
+};
+
 export default async function (req, res) {
-  // Convert Node.js IncomingMessage → Web API Request
   const protocol = req.headers['x-forwarded-proto'] || 'https';
   const host = req.headers['x-forwarded-host'] || req.headers.host;
   const url = new URL(req.url, `${protocol}://${host}`);
 
+  // Check if request matches a CMS raw proxy route
+  const proxyConfig = PROXY_ROUTES[url.pathname];
+  if (proxyConfig && (req.method === 'GET' || req.method === 'HEAD')) {
+    const base = process.env.BLOG_API_URL || 'https://bdablogs.vercel.app';
+    const key = process.env.BLOG_API_KEY || '';
+
+    try {
+      const cmsRes = await fetch(`${base}${proxyConfig.path}`, {
+        headers: key ? { Authorization: `Bearer ${key}` } : {},
+      });
+
+      if (cmsRes.ok) {
+        const body = await cmsRes.text();
+        res.statusCode = 200;
+        res.setHeader('Content-Type', proxyConfig.contentType);
+        res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+        res.end(body);
+        return;
+      }
+    } catch (err) {
+      console.error(`[CMS Proxy] Failed to proxy ${url.pathname}:`, err);
+    }
+  }
+
+  // Convert Node.js IncomingMessage → Web API Request
   const headers = new Headers();
   for (const [key, value] of Object.entries(req.headers)) {
     if (Array.isArray(value)) {
@@ -59,3 +91,4 @@ export default async function (req, res) {
     res.end();
   }
 }
+

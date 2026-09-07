@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Menu, Moon, Sun, X, ArrowRight } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#features", label: "Features" },
-  { href: "#workflow", label: "Workflow" },
-  { href: "#roles", label: "Roles" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#features", label: "Features" },
+  { href: "/#workflow", label: "Workflow" },
+  { href: "/#roles", label: "Roles" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/blog", label: "Blog", isRoute: true },
 ];
 
 export function SiteNav() {
@@ -32,7 +34,7 @@ export function SiteNav() {
       )}
     >
       <div className="mx-auto max-w-[1140px] px-5 sm:px-8 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 group">
+        <Link to="/" className="flex items-center gap-2 group">
           <img
             src="/logo-icon.png"
             alt="QA Assist logo"
@@ -41,18 +43,28 @@ export function SiteNav() {
           <span className="font-display text-[17px] tracking-tight font-medium">
             QA Assist
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-1 rounded-full border hairline bg-elevated/60 backdrop-blur px-1.5 py-1">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-[13px] text-muted-foreground hover:text-foreground hover:bg-secondary px-3 py-1.5 rounded-full transition-colors"
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) =>
+            l.isRoute ? (
+              <Link
+                key={l.href}
+                to="/blog"
+                className="text-[13px] text-muted-foreground hover:text-foreground hover:bg-secondary px-3 py-1.5 rounded-full transition-colors [&.active]:text-foreground [&.active]:font-medium"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-[13px] text-muted-foreground hover:text-foreground hover:bg-secondary px-3 py-1.5 rounded-full transition-colors"
+              >
+                {l.label}
+              </a>
+            ),
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -70,7 +82,7 @@ export function SiteNav() {
             Login
           </a>
           <a
-            href="#getearlyaccess"
+            href="/#getearlyaccess"
             className="hidden sm:inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-[13px] font-medium text-primary-foreground bg-foreground hover:opacity-90 transition-opacity shadow-[var(--shadow-soft)]"
           >
             Get early access
@@ -89,18 +101,29 @@ export function SiteNav() {
       {open && (
         <div className="md:hidden border-t hairline bg-background/95 backdrop-blur-md">
           <nav className="px-6 py-4 flex flex-col gap-3">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="text-sm text-muted-foreground hover:text-foreground"
-              >
-                {l.label}
-              </a>
-            ))}
+            {links.map((l) =>
+              l.isRoute ? (
+                <Link
+                  key={l.href}
+                  to="/blog"
+                  onClick={() => setOpen(false)}
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              ),
+            )}
             <a
-              href="#getearlyaccess"
+              href="/#getearlyaccess"
               onClick={() => setOpen(false)}
               className="text-sm font-medium text-info-foreground"
             >
@@ -119,3 +142,4 @@ export function SiteNav() {
     </header>
   );
 }
+
