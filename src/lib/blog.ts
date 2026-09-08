@@ -276,14 +276,20 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
     return enrichPost(data.post);
   }
 
-  // 2. Fallback to query by slug
-  const queryData = await api<{ posts?: BlogPost[] }>(`/api/v1/posts?slug=${encodeURIComponent(slug)}`);
+  // 2. Fallback: fetch posts and find the exact matching slug
+  const queryData = await api<{ posts?: BlogPost[] }>(`/api/v1/posts?limit=100`);
   if (queryData?.posts && queryData.posts.length > 0) {
-    return enrichPost(queryData.posts[0]);
+    const matched = queryData.posts.find(
+      (p) => p.slug === slug || encodeURIComponent(p.slug) === encodeURIComponent(slug)
+    );
+    if (matched) {
+      return enrichPost(matched);
+    }
   }
 
   return null;
 }
+
 
 export async function getRelated(slug: string): Promise<BlogPost[]> {
   if (!slug) return [];
